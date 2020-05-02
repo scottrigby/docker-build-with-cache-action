@@ -153,7 +153,9 @@ build_image() {
   if [ -n "${INPUT_BUILD_SSH_KEY:-}" ]; then
     echo $INPUT_BUILD_SSH_KEY > build_ssh_key
     chmod 600 build_ssh_key
-    build_ssh_opt="--ssh ${INPUT_BUILD_SSH_KEY_NAME:-default}=./build_ssh_key"
+    ls -lah $(pwd)/build_ssh_key
+    cat $(pwd)/build_ssh_key
+    build_ssh_opt="--ssh ${INPUT_BUILD_SSH_KEY_NAME:-default}=$(pwd)/build_ssh_key"
   fi
 
   # build image using cache
