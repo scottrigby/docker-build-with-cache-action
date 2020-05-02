@@ -43,6 +43,12 @@ inputs:
   build_extra_args:
     description: "(Optional) Extra arguments to pass to docker build"
     required: false
+  build_ssh_key:
+    description: "(Optional) Private key for building with Docker BuildKit experimental ssh feature"
+    required: false
+  build_ssh_key_name:
+    description: "(Optional) Private key name for build_ssh_key"
+    required: false
 
 runs:
   using: 'docker'

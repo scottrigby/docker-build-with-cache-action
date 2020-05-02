@@ -150,6 +150,12 @@ build_image() {
     echo "Use cache: $cache_from"
   fi
 
+  if [ -n "${INPUT_BUILD_SSH_KEY:-}" ]; then
+    echo $INPUT_BUILD_SSH_KEY > build_ssh_key
+    chmod 600 build_ssh_key
+    build_ssh_opt="--ssh ${INPUT_BUILD_SSH_KEY_NAME:-default}=./build_ssh_key"
+  fi
+
   # build image using cache
   set -o pipefail
   set -x
@@ -158,6 +164,7 @@ build_image() {
     --tag $dummy_image_name \
     --file ${INPUT_CONTEXT}/${INPUT_DOCKERFILE} \
     ${INPUT_BUILD_EXTRA_ARGS} \
+    ${build_ssh_opt} \
     ${INPUT_CONTEXT} | tee "$BUILD_LOG"
   set +x
 }

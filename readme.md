@@ -36,7 +36,12 @@ Built-in support for Docker Hub, AWS ECR, GitHub's registry, and Google Cloud.
 
 `build_extra_args`: Provide extra arguments to `docker build`. eg: `"--compress=true --build-arg=hello=world"`
 
+`build_ssh_key`: Provide private key for building with Docker BuildKit [experimental ssh feature][experimental ssh feature]. eg: `${{ secrets.SSH_PRIVATE_KEY }}`
+
+`build_ssh_key_name`: Provide private key name for build_ssh_key (default `default`)
+
 [branch tip]: https://stackoverflow.com/questions/16080342/what-is-a-branch-tip-in-git
+[experimental ssh feature]: https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds
 
 ## Outputs
 
